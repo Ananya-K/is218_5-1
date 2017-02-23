@@ -3,6 +3,8 @@ require('../model/database.php');
 require('../model/product_db.php');
 require('../model/category_db.php');
 
+  include("category_list.php");
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -47,7 +49,9 @@ if ($action == 'list_products') {
             $name == NULL || $price == NULL || $price == FALSE) {
         $error = "Invalid product data. Check all fields and try again.";
         include('../errors/error.php');
-    } else { 
+    }else if ($action == 'list_categories'){
+	 
+    }else { 
         add_product($category_id, $code, $name, $price);
         header("Location: .?category_id=$category_id");
     }
